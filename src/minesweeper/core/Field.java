@@ -1,5 +1,7 @@
 package minesweeper.core;
 
+import minesweeper.Settings;
+
 import java.util.Random;
 
 /**
@@ -77,6 +79,16 @@ public class Field {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
         this.mineCount = mineCount;
+        tiles = new Tile[this.rowCount][this.columnCount];
+
+        //generate the field content
+        generate();
+    }
+
+    public Field(Settings settings) {
+        this.rowCount = settings.getRowCount();
+        this.columnCount = settings.getColumnCount();
+        this.mineCount = settings.getMineCount();
         tiles = new Tile[this.rowCount][this.columnCount];
 
         //generate the field content

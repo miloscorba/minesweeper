@@ -95,10 +95,12 @@ public class ConsoleUI implements UserInterface {
         for(int column = 0; column < field.getColumnCount(); column++){
             if(firstRowSpace == true) {
                 System.out.print(ANSI_GREEN);
-                System.out.printf("   0 ");
+                System.out.printf("    0  ");
                 firstRowSpace = false;
             }
-            else
+            else if (column < 10)
+                System.out.printf(column + "  ");
+            else if (column >= 10 )
                 System.out.printf(column + " ");
         }
         System.out.print(ANSI_RESET);
@@ -112,8 +114,10 @@ public class ConsoleUI implements UserInterface {
             for(int column = 0; column < this.field.getColumnCount(); column++){
                 Tile tile = field.getTile(row,column);
 
-                if(tile.getState().equals(Tile.State.CLOSED))
-                    System.out.printf(" -");
+                if(tile.getState().equals(Tile.State.CLOSED) && column < 11)
+                    System.out.printf("  -");
+                if(tile.getState().equals(Tile.State.CLOSED) && column >= 11)
+                    System.out.printf("  -");
                 else if (field.getTile(row,column).getState() == Tile.State.MARKED)
                     System.out.printf(ANSI_BLUE + " M" + ANSI_RESET);
                 else if ((field.getTile(row,column).getState() == Tile.State.OPEN) &&

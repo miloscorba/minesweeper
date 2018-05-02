@@ -35,19 +35,32 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
      * Returns a string representation of the object.
      * @return a string representation of the object
      */
+    @Override
     public String toString() {
-        throw new UnsupportedOperationException("Method toString not yet implemented");
+        return "BestTimes{" +
+                "playerTimes=" + playerTimes +
+                ", name='" + name + '\'' +
+                ", time=" + time +
+                '}';
     }
 
     /**
      * Player time.
      */
-    public static class PlayerTime implements Comparable<PlayerTime>{
+    public static class PlayerTime implements Comparable<PlayerTime> {
         /** Player name. */
         private final String name;
 
         /** Playing time in seconds. */
         private final int time;
+
+        public String getName() {
+            return name;
+        }
+
+        public int getTime() {
+            return time;
+        }
 
         /**
          * Constructor.
@@ -59,18 +72,12 @@ public class BestTimes implements Iterable<BestTimes.PlayerTime> {
             this.time = time;
         }
 
-        @Override
-        public int compareTo(PlayerTime o) {
-            return compareTo(o);
-        }
-    }
+           @Override
+           public int compareTo(PlayerTime o) {
+               return time - o.getTime();
+           }
+       }
 
 
-    public String getName() {
-        return name;
-    }
 
-    public int getTime() {
-        return time;
-    }
 }
